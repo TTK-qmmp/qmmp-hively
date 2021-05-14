@@ -11,7 +11,7 @@ HEADERS += decoderhivelyfactory.h \
 SOURCES += decoderhivelyfactory.cpp \
            decoder_hively.cpp \
            hivelyhelper.cpp \
-           hvl_replay.cpp
+           hvl_replay.c
 
 unix {
     target.path = $$PLUGIN_DIR/Input
