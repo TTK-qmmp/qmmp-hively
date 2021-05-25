@@ -40,8 +40,8 @@ public:
     virtual void seek(qint64 time) override;
 
 private:
-    HivelyHelper* m_hively;
+    HivelyHelper* m_helper;
 
 };
 
-#endif // DECODER_HIVELY_H
+#endif

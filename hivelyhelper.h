@@ -20,7 +20,8 @@
 #define HIVELYHELPER_H
 
 #include <QMap>
-#include <QString>
+#include <QFile>
+#include <qmmp/qmmp.h>
 
 typedef struct {
     int bitrate;
@@ -36,7 +37,7 @@ public:
     explicit HivelyHelper(const QString &path);
     ~HivelyHelper();
 
-    void close();
+    void deinit();
 
     bool initialize();
     int totalTime() const;
@@ -48,11 +49,12 @@ public:
     int bitsPerSample() const;
 
     int read(unsigned char *buf, int size);
+    const QMap<Qmmp::MetaData, QString> &readMetaData() const;
 
 private:
     QString m_path;
     hively_info *m_info;
-    QMap<QString, QString> m_meta;
+    QMap<Qmmp::MetaData, QString> m_metaData;
 
 };
 
