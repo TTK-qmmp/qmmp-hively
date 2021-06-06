@@ -24,9 +24,9 @@
 #include <qmmp/qmmp.h>
 
 typedef struct {
+    struct hvl_tune *input;
     int bitrate;
-    struct hvl_tune *tune;
-} hively_info;
+} decode_info;
 
 /*!
  * @author Greedysky <greedysky@163.com>
@@ -53,7 +53,7 @@ public:
 
 private:
     QString m_path;
-    hively_info *m_info;
+    decode_info *m_info;
     QMap<Qmmp::MetaData, QString> m_metaData;
 
 };
