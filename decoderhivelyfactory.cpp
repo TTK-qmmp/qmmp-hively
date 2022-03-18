@@ -1,6 +1,6 @@
+#include "decoderhivelyfactory.h"
 #include "hivelyhelper.h"
 #include "decoder_hively.h"
-#include "decoderhivelyfactory.h"
 
 #include <QMessageBox>
 
@@ -12,11 +12,10 @@ bool DecoderHivelyFactory::canDecode(QIODevice *) const
 DecoderProperties DecoderHivelyFactory::properties() const
 {
     DecoderProperties properties;
-    properties.name = "Hively Plugin";
+    properties.name = tr("Hively Plugin");
     properties.shortName = "hively";
     properties.filters << "*.ahx" << "*.hvl";
     properties.description = "HVL Module File";
-    properties.protocols << "file";
     properties.noInput = true;
     return properties;
 }
@@ -30,7 +29,6 @@ Decoder *DecoderHivelyFactory::create(const QString &path, QIODevice *input)
 QList<TrackInfo*> DecoderHivelyFactory::createPlayList(const QString &path, TrackInfo::Parts parts, QStringList *)
 {
     TrackInfo *info = new TrackInfo(path);
-
     if(parts == TrackInfo::Parts())
     {
         return QList<TrackInfo*>() << info;
@@ -57,11 +55,10 @@ QList<TrackInfo*> DecoderHivelyFactory::createPlayList(const QString &path, Trac
         info->setValue(Qmmp::BITRATE, helper.bitrate());
         info->setValue(Qmmp::SAMPLERATE, helper.sampleRate());
         info->setValue(Qmmp::CHANNELS, helper.channels());
-        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.bitsPerSample());
+        info->setValue(Qmmp::BITS_PER_SAMPLE, helper.depth());
         info->setValue(Qmmp::FORMAT_NAME, "Hively");
         info->setDuration(helper.totalTime());
     }
-
     return QList<TrackInfo*>() << info;
 }
 
