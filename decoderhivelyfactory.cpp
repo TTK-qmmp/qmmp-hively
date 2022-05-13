@@ -1,12 +1,20 @@
 #include "decoderhivelyfactory.h"
+#include "hivelymetadatamodel.h"
 #include "hivelyhelper.h"
 #include "decoder_hively.h"
 
 #include <QMessageBox>
 
-bool DecoderHivelyFactory::canDecode(QIODevice *) const
+bool DecoderHivelyFactory::canDecode(QIODevice *input) const
 {
-    return false;
+    QFile *file = static_cast<QFile*>(input);
+    if(!file)
+    {
+        return false;
+    }
+
+    HivelyHelper helper(file->fileName());
+    return helper.initialize();
 }
 
 DecoderProperties DecoderHivelyFactory::properties() const
@@ -16,6 +24,7 @@ DecoderProperties DecoderHivelyFactory::properties() const
     properties.shortName = "hively";
     properties.filters << "*.ahx" << "*.hvl";
     properties.description = "HVL Module File";
+    properties.protocols << "file";
     properties.noInput = true;
     return properties;
 }
@@ -43,11 +52,7 @@ QList<TrackInfo*> DecoderHivelyFactory::createPlayList(const QString &path, Trac
 
     if(parts & TrackInfo::MetaData)
     {
-        const QMap<Qmmp::MetaData, QString> metaData(helper.readMetaData());
-        for(auto itr = metaData.begin(); itr != metaData.end(); ++itr)
-        {
-            info->setValue(itr.key(), itr.value());
-        }
+        info->setValue(Qmmp::TITLE, helper.title());
     }
 
     if(parts & TrackInfo::Properties)
@@ -64,9 +69,8 @@ QList<TrackInfo*> DecoderHivelyFactory::createPlayList(const QString &path, Trac
 
 MetaDataModel* DecoderHivelyFactory::createMetaDataModel(const QString &path, bool readOnly)
 {
-    Q_UNUSED(path);
     Q_UNUSED(readOnly);
-    return nullptr;
+    return new HivelyMetaDataModel(path);
 }
 
 void DecoderHivelyFactory::showSettings(QWidget *parent)
