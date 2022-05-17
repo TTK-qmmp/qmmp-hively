@@ -80,9 +80,9 @@ void DecoderHivelyFactory::showSettings(QWidget *parent)
 
 void DecoderHivelyFactory::showAbout(QWidget *parent)
 {
-    QMessageBox::about (parent, tr("About HVL Module Reader Plugin"),
-                        tr("Qmmp HVL Module Reader Plugin")+"\n"+
-                        tr("Written by: Greedysky <greedysky@163.com>"));
+    QMessageBox::about(parent, tr("About HVL Module Reader Plugin"),
+                       tr("Qmmp HVL Module Reader Plugin") + "\n" +
+                       tr("Written by: Greedysky <greedysky@163.com>"));
 }
 
 QString DecoderHivelyFactory::translation() const
