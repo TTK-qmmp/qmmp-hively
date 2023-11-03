@@ -1,3 +1,5 @@
+#ifndef __HVL_REPLAY_H__
+#define __HVL_REPLAY_H__
 
 typedef char int8;
 typedef unsigned char uint8;
@@ -236,4 +238,6 @@ void hvl_mixchunk(struct hvl_tune* ht, uint32 samples, int8* buf1, int8* buf2, i
 void hvl_play_irq(struct hvl_tune* ht);
 int  hvl_GetPlayTime(struct hvl_tune* ht);         // get time in ms
 int  hvl_Seek(struct hvl_tune* ht, int seek_time); // return time in ms or -1 if end reached
+
+#endif
 
