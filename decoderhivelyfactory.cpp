@@ -74,10 +74,18 @@ MetaDataModel* DecoderHivelyFactory::createMetaDataModel(const QString &path, bo
     return new HivelyMetaDataModel(path);
 }
 
+#if (QMMP_VERSION_INT < 0x10700) || (0x20000 <= QMMP_VERSION_INT && QMMP_VERSION_INT < 0x20200)
 void DecoderHivelyFactory::showSettings(QWidget *parent)
 {
     Q_UNUSED(parent);
 }
+#else
+QDialog *DecoderHivelyFactory::createSettings(QWidget *parent)
+{
+    Q_UNUSED(parent);
+    return nullptr;
+}
+#endif
 
 void DecoderHivelyFactory::showAbout(QWidget *parent)
 {
