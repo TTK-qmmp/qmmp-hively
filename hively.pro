@@ -17,8 +17,6 @@ SOURCES += decoderhivelyfactory.cpp \
            hivelymetadatamodel.cpp \
            libhively/hvl_replay.c
 
-INCLUDEPATH += $$PWD/libhively
-
 #CONFIG += BUILD_PLUGIN_INSIDE
 contains(CONFIG, BUILD_PLUGIN_INSIDE){
     include($$PWD/../../plugins.pri)
