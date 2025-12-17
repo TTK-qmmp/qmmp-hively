@@ -91,7 +91,8 @@ void DecoderHivelyFactory::showAbout(QWidget *parent)
 {
     QMessageBox::about(parent, tr("About HVL Module Reader Plugin"),
                        tr("Qmmp HVL Module Reader Plugin") + "\n" +
-                       tr("Written by: Greedysky <greedysky@163.com>"));
+                       tr("Written by: Greedysky <greedysky@163.com>") + "\n" +
+                       tr("Based on the source code from the Hively"));
 }
 
 QString DecoderHivelyFactory::translation() const
