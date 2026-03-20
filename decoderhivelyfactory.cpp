@@ -41,7 +41,7 @@ TrackInfoList DecoderHivelyFactory::createPlayList(const QString &path, TrackInf
 #if QMMP_VERSION_INT < 0x20400
     TrackInfo *raw(new TrackInfo(path)), *info = raw;
 #else
-    TrackInfo raw(path), info = &raw;
+    TrackInfo raw(path), *info = &raw;
 #endif
     if(parts == TrackInfo::Parts())
     {
