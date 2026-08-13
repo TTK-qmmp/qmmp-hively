@@ -1,4 +1,4 @@
-This is a plugin for Qmmp (1.6.0 or greater) which supports HVL file.
+This is an inut plugin for Qmmp (1.6.0 or later) that supports HVL files.
 
 Based on [Hively](https://github.com/sasq64/musicplayer/tree/master/src/plugins/hivelyplugin) (HVL audio module).
 
